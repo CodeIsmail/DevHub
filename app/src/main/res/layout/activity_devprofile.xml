@@ -1,0 +1,112 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/profile_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dev_card_color"
+    >
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:translationZ="@dimen/cardview_default_elevation"
+        android:background="@color/imageborder"
+        >
+
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/github_profile_pic"
+            android:layout_width="190dp"
+            android:layout_height="190dp"
+            app:civ_border_width="4dp"
+            tools:src="@drawable/userprofile"
+            app:civ_border_color="@color/colorPrimaryDark"
+            android:layout_alignBottom="@+id/github_username"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="41dp" />
+
+
+
+        <ImageView
+            android:id="@+id/github_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="85dp"
+            android:layout_marginStart="85dp"
+            android:layout_marginTop="280dp"
+            android:src="@drawable/githubmark"
+
+            />
+
+        <TextView
+            android:id="@+id/github_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/github_icon"
+            android:layout_toEndOf="@+id/github_icon"
+            android:layout_marginTop="285dp"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            tools:text="HDMNDNMNM"
+            android:textColor="@android:color/black"
+            />
+
+        <ImageView
+            android:id="@+id/github_profile_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="325dp"
+            android:src="@drawable/userprofile"
+            />
+
+        <TextView
+            android:id="@+id/github_user_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/github_profile_icon"
+            android:layout_toEndOf="@+id/github_profile_icon"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:layout_marginTop="330dp"
+            android:layout_marginLeft="5dp"
+
+            tools:text="knbfskdnsdkjdslksd"
+            android:textColorLink="@android:color/holo_blue_dark"
+            android:autoLink="web"
+            android:textColor="@android:color/black"
+            />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:background="@drawable/buttoncircle"
+        android:elevation="4dp"
+        android:translationZ="4dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"/>
+    <ImageButton
+        android:id="@+id/share_icon"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="4dp"
+        android:src="@drawable/ic_share"
+        android:elevation="4dp"
+        android:translationZ="4dp"
+        android:background="@drawable/ripple_effect"
+        />
+
+</RelativeLayout>
