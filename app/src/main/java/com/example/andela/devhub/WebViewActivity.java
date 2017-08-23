@@ -13,7 +13,6 @@ public class WebViewActivity extends AppCompatActivity {
 
     public static final String EXTRA_URL = "extra.url";
 
-    private WebView mWebView;
     private ProgressBar mProgressLoading;
 
     @Override
@@ -23,7 +22,7 @@ public class WebViewActivity extends AppCompatActivity {
 
         String url = getIntent().getStringExtra(EXTRA_URL);
 
-        mWebView = (WebView) findViewById(R.id.webview_content);
+        WebView mWebView = (WebView) findViewById(R.id.webview_content);
         mProgressLoading = (ProgressBar) findViewById(R.id.progress_loading);
 
         mWebView.setWebViewClient(new WebViewClient());

@@ -1,11 +1,8 @@
 package com.example.andela.devhub;
 
 import android.app.Activity;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsClient;
@@ -15,7 +12,6 @@ import android.support.customtabs.CustomTabsSession;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,6 +60,7 @@ public class DeveloperProfile extends AppCompatActivity {
         Picasso.with(this).load(devData[0]).into(profileImageView);
         userNameTextView.setText(devData[1]);
         profileLinkTextView.setText(devData[2]);
+        profileLinkTextView.setLinkTextColor(Color.BLUE);
 
 
         userName = userNameTextView.getText().toString();
@@ -74,13 +71,13 @@ public class DeveloperProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 String shareMessage = String.format(
-                        "Check out this awesome developer @%s, %s.", userName,
+                        "Check out this awesome developer @%s, %s .", userName,
                         profileLink);
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                 shareIntent.setType("text/plain");
 
-                Intent chooser= Intent.createChooser(shareIntent, "Share");
+                Intent chooser= Intent.createChooser(shareIntent, "Share with");
 
                 if (shareIntent.resolveActivity(getPackageManager()) != null){
                     startActivity(chooser);

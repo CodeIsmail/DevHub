@@ -22,7 +22,6 @@ public class DeveloperCardAdapter extends ArrayAdapter<DeveloperCardModel> {
     static class ViewHolder {
         public TextView usernameTextView;
         public ImageView developerAviImageView;
-        //public ImageView githubIconImageView;
     }
 
     public DeveloperCardAdapter(Context context, ArrayList<DeveloperCardModel> developerCard) {
@@ -55,9 +54,8 @@ public class DeveloperCardAdapter extends ArrayAdapter<DeveloperCardModel> {
         ViewHolder holder = (ViewHolder) listItemView.getTag();
         DeveloperCardModel devCard = getItem(position);
 
-        Picasso.with(getContext()).load(devCard.getAvaterResourceId())
+        Picasso.with(getContext()).load(devCard != null ? devCard.getAvaterResourceId() : null)
                 .into(holder.developerAviImageView);
-        //holder.developerAviImageView.setImageResource();//changed
 
 
         holder.usernameTextView.setText(devCard.getUsername());
