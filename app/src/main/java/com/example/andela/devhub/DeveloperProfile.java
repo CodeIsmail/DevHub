@@ -1,11 +1,13 @@
 package com.example.andela.devhub;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.customtabs.CustomTabsIntent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.webkit.WebView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +16,9 @@ import com.squareup.picasso.Picasso;
 
 
 public class DeveloperProfile extends AppCompatActivity {
+
+
+    final String CUSTOM_TAB_PACKAGE_NAME = "com.android.chrome";
 
 
     private ImageButton shareButton;
@@ -30,6 +35,8 @@ public class DeveloperProfile extends AppCompatActivity {
         setContentView(R.layout.activity_devprofile);
 
 
+
+
         profileImageView = (ImageView) findViewById(R.id.github_profile_pic);
         shareButton = (ImageButton) findViewById(R.id.share_icon);
         profileLinkTextView = (TextView) findViewById(R.id.github_user_profile);
@@ -44,6 +51,7 @@ public class DeveloperProfile extends AppCompatActivity {
         Picasso.with(this).load(devData[0]).into(profileImageView);
         userNameTextView.setText(devData[1]);
         profileLinkTextView.setText(devData[2]);
+        profileLinkTextView.setLinkTextColor(Color.BLUE);
 
 
         userName = userNameTextView.getText().toString();
@@ -54,13 +62,13 @@ public class DeveloperProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 String shareMessage = String.format(
-                        "Check out this awesome developer @%s, %s.", userName,
+                        "Check out this awesome developer @%s, %s .", userName,
                         profileLink);
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
                 shareIntent.setType("text/plain");
 
-                Intent chooser= Intent.createChooser(shareIntent, "Share");
+                Intent chooser= Intent.createChooser(shareIntent, "Share with");
 
                 if (shareIntent.resolveActivity(getPackageManager()) != null){
                     startActivity(chooser);
@@ -74,14 +82,75 @@ public class DeveloperProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 Uri profileURI = Uri.parse(profileLink);
-                Intent profileViewIntent = new Intent(Intent.ACTION_VIEW, profileURI);
+                //openCustomChromeTab(profileURI);
 
-                startActivity(profileViewIntent);
+                //runChromeTab(DeveloperProfile.this, profileURI);
+                // Use a CustomTabsIntent.Builder to configure CustomTabsIntent.
+                // Once ready, call CustomTabsIntent.Builder.build() to create a CustomTabsIntent
+                // and launch the desired Url with CustomTabsIntent.launchUrl()
+                CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
+
+                // Begin customizing
+                // set toolbar colors
+                intentBuilder.setToolbarColor(ContextCompat.getColor(DeveloperProfile.this,
+                        R.color.colorPrimary));
+                intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(DeveloperProfile.this,
+                        R.color.colorPrimaryDark));
+
+                // set start and exit animations
+                intentBuilder.setStartAnimations(DeveloperProfile.this,
+                        R.anim.slide_in_right, R.anim.slide_out_left);
+                intentBuilder.setExitAnimations(DeveloperProfile.this, android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right);
+
+                CustomTabsIntent customTabsIntent = intentBuilder.build();
+
+                customTabsIntent.launchUrl(DeveloperProfile.this, profileURI);
 
             }
         });
 
     }
+
+//    private void runChromeTab(Context mContext, Uri uri)
+//    {
+//
+//        mCustomTabsServiceConnection = new CustomTabsServiceConnection() {
+//            @Override
+//            public void onCustomTabsServiceConnected(ComponentName componentName, CustomTabsClient customTabsClient) {
+//                mCustomTabsClient= customTabsClient;
+//                mCustomTabsClient.warmup(0L);
+//                mCustomTabsSession = mCustomTabsClient.newSession(null);
+//            }
+//
+//            @Override
+//            public void onServiceDisconnected(ComponentName name) {
+//                mCustomTabsClient= null;
+//            }
+//        };
+//
+//        CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, mCustomTabsServiceConnection);
+//
+//        mCustomTabsIntent = new CustomTabsIntent.Builder(mCustomTabsSession)
+//                .setShowTitle(true)
+//                .build();
+//
+//        mCustomTabsIntent.launchUrl(mContext, uri);
+//    }
+
+
+//
+//    /**
+//     * Creates a pending intent to send a broadcast to the {@link ChromeTabActionBroadcastReceiver}
+//     * @param actionSource
+//     * @return
+//     */
+//    private PendingIntent createPendingIntent(int actionSource) {
+//        Intent actionIntent = new Intent(this, ChromeTabActionBroadcastReceiver.class);
+//        actionIntent.putExtra(ChromeTabActionBroadcastReceiver.KEY_ACTION_SOURCE, actionSource);
+//        return PendingIntent.getBroadcast(this, actionSource, actionIntent, 0);
+//    }
+
 
 
 }
