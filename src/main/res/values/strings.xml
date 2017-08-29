@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DevHub</string>
+    <string name="profile_link"><a href="https://github.com/Codeismail">https://github.com/Codeismail</a></string>
+    <string name="loading_text">loading devs</string>
+</resources>

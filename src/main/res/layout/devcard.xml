@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    >
+
+    <!-- A CardView that contains a developer github info -->
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        android:layout_width="200dp"
+        android:layout_height="230dp"
+        card_view:cardCornerRadius="35dp"
+        android:elevation="@dimen/cardview_default_elevation">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/github_profile_pic"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                tools:src="@drawable/githubmark"
+                app:civ_border_width="4dp"
+                app:civ_border_color="@color/colorPrimaryDark"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="25dp"/>
+
+
+
+            <ImageView
+                android:id="@+id/github_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="40dp"
+                android:src="@drawable/githubmark"
+                />
+
+            <TextView
+                android:id="@+id/github_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/github_icon"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                tools:text="asdfghjklqwertyuop"
+                android:textColor="@android:color/black"
+                />
+        </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
