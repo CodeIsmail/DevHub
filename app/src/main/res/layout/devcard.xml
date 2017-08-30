@@ -33,7 +33,7 @@
                 android:layout_height="128dp"
                 tools:src="@drawable/githubmark"
                 app:civ_border_width="4dp"
-                app:civ_border_color="@color/colorPrimaryDark"
+                app:civ_border_color="@color/imageborder"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp"/>
 

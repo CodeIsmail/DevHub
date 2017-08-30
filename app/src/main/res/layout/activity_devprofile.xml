@@ -17,7 +17,7 @@
         android:elevation="@dimen/cardview_default_elevation"
         android:translationZ="@dimen/cardview_default_elevation"
         android:layout_margin="16dp"
-        android:background="@color/imageborder"
+        android:background="@color/cardview_light_background"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
@@ -30,7 +30,7 @@
             android:layout_height="190dp"
             app:civ_border_width="4dp"
             tools:src="@drawable/userprofile"
-            app:civ_border_color="@color/colorPrimaryDark"
+            app:civ_border_color="@color/imageborder"
             android:layout_alignBottom="@+id/github_username"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="41dp" />
