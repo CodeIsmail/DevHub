@@ -25,7 +25,6 @@
             android:parentActivityName=".DevelopersList"
             />
 
-        <activity android:name=".startup_progress"></activity>
     </application>
 
 </manifest>

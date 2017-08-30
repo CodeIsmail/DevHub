@@ -5,34 +5,18 @@ import android.content.Intent;
 import android.content.Loader;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.data;
-import static com.example.andela.devhub.QueryData.extractDevsFromJson;
-import static com.example.andela.devhub.QueryData.makeHttpRequest;
 
 public class DevelopersList extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<DeveloperCardModel>>{
 
@@ -41,7 +25,11 @@ public class DevelopersList extends AppCompatActivity implements LoaderManager.L
     private GridView gridView;
     private TextView mTextView;
     private ProgressBar mProgress;
+    private RelativeLayout relativeLayout;
 
+
+    private NetworkInfo networkInfo;
+    private ConnectivityManager connManager;
     /** Tag for the log messages */
     public static final String LOG_TAG = DevelopersList.class.getSimpleName();
 
@@ -54,6 +42,7 @@ public class DevelopersList extends AppCompatActivity implements LoaderManager.L
         gridView = (GridView) findViewById(R.id.gridview);
         mTextView = (TextView)findViewById(R.id.empty_message);
         mProgress = (ProgressBar)findViewById(R.id.loading_progress);
+        relativeLayout = (RelativeLayout) findViewById(R.id.main_view);
 
         gridView.setEmptyView(mTextView);
 
@@ -84,15 +73,31 @@ public class DevelopersList extends AppCompatActivity implements LoaderManager.L
             }
         });
 
-        ConnectivityManager connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo  = connManager.getActiveNetworkInfo();
+        connManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        networkInfo  = connManager.getActiveNetworkInfo();
 
         if (networkInfo != null && networkInfo.isConnected()){
             getLoaderManager().initLoader(0, null, this);
         }else{
-            mProgress.setVisibility(View.GONE);
-            String noInternetMessage = "No internet connection";
+                mProgress.setVisibility(View.GONE);
+            final String noInternetMessage = "No internet connection. Connect then Tab";
             mTextView.setText(noInternetMessage);
+            relativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    networkInfo  = connManager.getActiveNetworkInfo();
+
+                    if(networkInfo != null && networkInfo.isConnected()){
+
+                        mProgress.setVisibility(View.VISIBLE);
+                        mTextView.setVisibility(View.GONE);
+                        getLoaderManager().restartLoader(0, null, DevelopersList.this);
+                    }else{
+                        mProgress.setVisibility(View.GONE);
+                        mTextView.setText(noInternetMessage);
+                    }
+                }
+            });
         }
 
     }

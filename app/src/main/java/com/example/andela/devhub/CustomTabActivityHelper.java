@@ -21,7 +21,6 @@ import java.util.List;
  *
  * https://github.com/GoogleChrome/custom-tabs-client/blob/master/demos/src/main/java/org/chromium/customtabsdemos/CustomTabActivityHelper.java
  *
- * Created by segun.famisa on 04/06/2016.
  */
 
 public class CustomTabActivityHelper implements ServiceConnectionCallback {
@@ -106,7 +105,7 @@ public class CustomTabActivityHelper implements ServiceConnectionCallback {
      *
      * @return a CustomTabsSession.
      */
-    public CustomTabsSession getSession() {
+    private CustomTabsSession getSession() {
         if (mCustomTabsClient == null) {
             mCustomTabsSession = null;
         } else if (mCustomTabsSession == null) {

@@ -2,7 +2,6 @@ package com.example.andela.devhub;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.customtabs.CustomTabsClient;
@@ -66,14 +65,6 @@ public class DeveloperProfile extends AppCompatActivity {
         SpannableString content = new SpannableString(devData[2]);
         content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
         profileLinkTextView.setText(content);
-        profileLinkTextView.setLinkTextColor(Color.BLUE);
-
-//
-//        String linkedText =
-//                String.format("<a href=\"%s\">%s</a> ", devData[2], devData[2]);
-//
-//        profileLinkTextView.setText(Html.fromHtml(linkedText));
-//        profileLinkTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         userName = userNameTextView.getText().toString();
         profileLink = profileLinkTextView.getText().toString();
@@ -103,85 +94,12 @@ public class DeveloperProfile extends AppCompatActivity {
             public void onClick(View view) {
 
                 Uri profileURI = Uri.parse(profileLink);
-                //openCustomChromeTab(profileURI);
 
-                //runChromeTab(DeveloperProfile.this, profileURI);
-                // Use a CustomTabsIntent.Builder to configure CustomTabsIntent.
-                // Once ready, call CustomTabsIntent.Builder.build() to create a CustomTabsIntent
-                // and launch the desired Url with CustomTabsIntent.launchUrl()
-                CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-
-                // Begin customizing
-                // set toolbar colors
-                intentBuilder.setToolbarColor(ContextCompat.getColor(DeveloperProfile.this,
-                        R.color.colorPrimary));
-                intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(DeveloperProfile.this,
-                        R.color.colorPrimaryDark));
-
-                // set start and exit animations
-                intentBuilder.setStartAnimations(DeveloperProfile.this,
-                        R.anim.slide_in_right, R.anim.slide_out_left);
-                intentBuilder.setExitAnimations(DeveloperProfile.this, android.R.anim.slide_in_left,
-                        android.R.anim.slide_out_right);
-
-                CustomTabsIntent customTabsIntent = intentBuilder.build();
-
-                customTabsIntent.launchUrl(DeveloperProfile.this, profileURI);
                 openCustomChromeTab(profileURI);
-
-//                //runChromeTab(DeveloperProfile.this, profileURI);
-//                // Use a CustomTabsIntent.Builder to configure CustomTabsIntent.
-//                // Once ready, call CustomTabsIntent.Builder.build() to create a CustomTabsIntent
-//                // and launch the desired Url with CustomTabsIntent.launchUrl()
-//                CustomTabsIntent.Builder intentBuilder = new CustomTabsIntent.Builder();
-//
-//                // Begin customizing
-//                // set toolbar colors
-//                intentBuilder.setToolbarColor(ContextCompat.getColor(DeveloperProfile.this,
-//                        R.color.colorPrimary));
-//                intentBuilder.setSecondaryToolbarColor(ContextCompat.getColor(DeveloperProfile.this,
-//                        R.color.colorPrimaryDark));
-//
-//                // set start and exit animations
-//                intentBuilder.setStartAnimations(DeveloperProfile.this,
-//                        R.anim.slide_in_right, R.anim.slide_out_left);
-//                intentBuilder.setExitAnimations(DeveloperProfile.this, android.R.anim.slide_in_left,
-//                        android.R.anim.slide_out_right);
-//
-//                CustomTabsIntent customTabsIntent = intentBuilder.build();
-//
-//                customTabsIntent.launchUrl(DeveloperProfile.this, profileURI);
-
             }
         });
 
     }
-
-//    private void runChromeTab(Context mContext, Uri uri)
-//    {
-//
-//        mCustomTabsServiceConnection = new CustomTabsServiceConnection() {
-//            @Override
-//            public void onCustomTabsServiceConnected(ComponentName componentName, CustomTabsClient customTabsClient) {
-//                mCustomTabsClient= customTabsClient;
-//                mCustomTabsClient.warmup(0L);
-//                mCustomTabsSession = mCustomTabsClient.newSession(null);
-//            }
-//
-//            @Override
-//            public void onServiceDisconnected(ComponentName name) {
-//                mCustomTabsClient= null;
-//            }
-//        };
-//
-//        CustomTabsClient.bindCustomTabsService(this, CUSTOM_TAB_PACKAGE_NAME, mCustomTabsServiceConnection);
-//
-//        mCustomTabsIntent = new CustomTabsIntent.Builder(mCustomTabsSession)
-//                .setShowTitle(true)
-//                .build();
-//
-//        mCustomTabsIntent.launchUrl(mContext, uri);
-//    }
 
     @Override
     protected void onStart() {

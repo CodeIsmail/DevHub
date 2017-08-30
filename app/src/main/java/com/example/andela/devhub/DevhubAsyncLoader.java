@@ -5,7 +5,6 @@ import android.content.Context;
 import android.util.Log;
 
 import java.io.IOException;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
