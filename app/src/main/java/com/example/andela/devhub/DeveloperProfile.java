@@ -11,6 +11,10 @@ import android.support.customtabs.CustomTabsServiceConnection;
 import android.support.customtabs.CustomTabsSession;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.method.LinkMovementMethod;
+import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -59,9 +63,18 @@ public class DeveloperProfile extends AppCompatActivity {
         // do something with the data
         Picasso.with(this).load(devData[0]).into(profileImageView);
         userNameTextView.setText(devData[1]);
-        profileLinkTextView.setText(devData[2]);
+
+        SpannableString content = new SpannableString(devData[2]);
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        profileLinkTextView.setText(content);
         profileLinkTextView.setLinkTextColor(Color.BLUE);
 
+//
+//        String linkedText =
+//                String.format("<a href=\"%s\">%s</a> ", devData[2], devData[2]);
+//
+//        profileLinkTextView.setText(Html.fromHtml(linkedText));
+//        profileLinkTextView.setMovementMethod(LinkMovementMethod.getInstance());
 
         userName = userNameTextView.getText().toString();
         profileLink = profileLinkTextView.getText().toString();
