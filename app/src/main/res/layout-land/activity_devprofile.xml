@@ -25,7 +25,7 @@
             android:elevation="@dimen/cardview_default_elevation"
             android:translationZ="@dimen/cardview_default_elevation"
             android:layout_margin="16dp"
-            android:background="@color/imageborder"
+            android:background="@color/cardview_light_background"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true">
 
@@ -36,9 +36,7 @@
                 android:id="@+id/github_profile_pic"
                 android:layout_width="190dp"
                 android:layout_height="190dp"
-                app:civ_border_width="4dp"
                 tools:src="@drawable/userprofile"
-                app:civ_border_color="@color/imageborder"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                  />
@@ -92,10 +90,9 @@
                 android:layout_marginTop="290dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="16dp"
+                android:textColorLink="@color/colorAccent"
                 tools:text="knbfskdnsdkjdslksd"
-                android:textColor="@android:color/black"/>
-
-
+                android:textColor="@color/colorAccent"/>
         </RelativeLayout>
 
         <ImageButton

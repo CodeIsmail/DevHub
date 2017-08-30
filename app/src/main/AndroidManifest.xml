@@ -22,7 +22,9 @@
         <activity
             android:name=".DeveloperProfile"
             android:label="Profile"
-            android:parentActivityName=".DevelopersList" />
+            android:parentActivityName=".DevelopersList"
+            />
+
         <activity android:name=".startup_progress"></activity>
     </application>
 

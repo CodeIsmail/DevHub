@@ -28,9 +28,7 @@
             android:id="@+id/github_profile_pic"
             android:layout_width="190dp"
             android:layout_height="190dp"
-            app:civ_border_width="4dp"
             tools:src="@drawable/userprofile"
-            app:civ_border_color="@color/imageborder"
             android:layout_alignBottom="@+id/github_username"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="41dp" />
@@ -76,15 +74,14 @@
             android:id="@+id/github_user_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/github_profile_icon"
-            android:layout_toEndOf="@+id/github_profile_icon"
-            android:textAppearance="?android:textAppearanceMedium"
-            android:layout_marginTop="330dp"
             android:layout_marginLeft="5dp"
-            tools:text="knbfskdnsdkjdslksd"
-            android:textColor="@android:color/black"/>
-
-
+            android:layout_marginTop="330dp"
+            android:layout_toEndOf="@+id/github_profile_icon"
+            android:layout_toRightOf="@+id/github_profile_icon"
+            android:textAppearance="?android:textAppearanceMedium"
+            android:textColor="@color/button_color"
+            android:focusable="true"
+            tools:text="knbfskdnsdkjdslksd" />
     </RelativeLayout>
 
     <ImageButton
